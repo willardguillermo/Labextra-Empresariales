@@ -1,0 +1,5 @@
+
+ANTES: 23
+DESPUES: 2
+  SELECT "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at", "blog_author"."id", "blog_author"."name" FROM "blog_post" INNER JOIN "blog_author" ON ("blog_post"."author_id" = "blog_author"."id") WHERE "blog_post"."published" = 1 ORDER BY "blog_post"."published_at" DESC
+  SELECT ("blog_post_tags"."post_id") AS "_prefetch_related_val_post_id", "blog_tag"."id", "blog_tag"."name" FROM "blog_tag" INNER JOIN "blog_post_tags" ON ("blog_tag"."id" = "blog_post_tags"."tag_id") WHERE "blog_post_tags"."post_id" IN (7, 5, 11, 8, 10, 4, 3, 9, 2, 1, 6)

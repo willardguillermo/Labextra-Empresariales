@@ -1,0 +1,9 @@
+18 objects imported automatically (use -v 2 for details).
+
+autores 4 articulos 15 comentarios 23
+--- q3 IA
+SELECT "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at" FROM "blog_post" WHERE ("blog_post"."published_at" > 2026-03-01 AND "blog_post"."published_at" < 2026-05-31)
+--- q5 IA
+SELECT "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at", COUNT("blog_comment"."id") AS "n_comments", COUNT("blog_post_tags"."tag_id") AS "n_tags" FROM "blog_post" LEFT OUTER JOIN "blog_comment" ON ("blog_post"."id" = "blog_comment"."post_id") LEFT OUTER JOIN "blog_post_tags" ON ("blog_post"."id" = "blog_post_tags"."post_id") WHERE "blog_post"."published" = True GROUP BY "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at" ORDER BY 8 DESC LIMIT 3
+--- q8 IA
+SELECT "blog_author"."id", "blog_author"."name" FROM "blog_author" INNER JOIN "blog_post" ON ("blog_author"."id" = "blog_post"."author_id") WHERE "blog_post"."published" = False

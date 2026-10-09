@@ -1,0 +1,14 @@
+
+--- q4 IA: consultas
+16
+SELECT "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at" FROM "blog_post"
+SELECT COUNT(*) AS "__count" FROM "blog_comment" WHERE "blog_comment"."post_id" = 1
+--- q8 IA resultado: ['Ana Quispe', 'Carla Rojas', 'Carla Rojas', 'Carla Rojas']
+--- q5 IA sin LIMIT, filas crudas de Introducción (comentarios x etiquetas): 18
+--- SQL equipo
+q3 SELECT "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at" FROM "blog_post" WHERE ("blog_post"."published" = True AND "blog_post"."published_at" BETWEEN 2026-03-01 AND 2026-05-31)
+q4 SELECT "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at", COUNT("blog_comment"."id") AS "n_comments" FROM "blog_post" LEFT OUTER JOIN "blog_comment" ON ("blog_post"."id" = "blog_comment"."post_id") GROUP BY "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at" HAVING COUNT("blog_comment"."id") > 2
+q5 SELECT "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at", COUNT(DISTINCT "blog_comment"."id") AS "n_comments", COUNT(DISTINCT "blog_post_tags"."tag_id") AS "n_tags" FROM "blog_post" LEFT OUTER JOIN "blog_comment" ON ("blog_post"."id" = "blog_comment"."post_id") LEFT OUTER JOIN "blog_post_tags" ON ("blog_post"."id" = "blog_post_tags"."post_id") WHERE "blog_post"."published" = True GROUP BY "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at" ORDER BY 8 DESC, "blog_post"."title" ASC LIMIT 3
+q6 SELECT "blog_post"."id", "blog_post"."title", "blog_post"."body", "blog_post"."author_id", "blog_post"."category_id", "blog_post"."published", "blog_post"."published_at" FROM "blog_post" INNER JOIN "blog_author" ON ("blog_post"."author_id" = "blog_author"."id") INNER JOIN "blog_profile" ON ("blog_author"."id" = "blog_profile"."author_id") WHERE "blog_profile"."country" = Perú
+q8 SELECT "blog_author"."id", "blog_author"."name" FROM "blog_author" WHERE NOT (EXISTS(SELECT 1 AS "a" FROM "blog_post" "U1" WHERE ("U1"."published" = True AND "U1"."author_id" = ("blog_author"."id")) LIMIT 1))
+--- q5 equipo: [('Introducción al ORM de Django', 6, 3), ('Managers propios paso a paso', 4, 2), ('QuerySets perezosos', 3, 4)]

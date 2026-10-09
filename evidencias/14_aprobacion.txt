@@ -1,0 +1,99 @@
+### BD recién creada. Artículo 5:
+
+5 Reseña: festival de cine andino - 1 comentario(s)
+
+### Paso 14a: pedir el borrado (plan)
+{
+  "status": "approval_required",
+  "plan": {
+    "action": "delete_comments_of_post",
+    "args": {
+      "post_id": 5
+    },
+    "details": {
+      "affected_comment_ids": [
+        16
+      ]
+    },
+    "plan_hash": "4d7ffe2c0e99"
+  }
+}
+
+No se aplicó nada. Si TÚ apruebas este plan, repite el comando con --approve 4d7ffe2c0e99
+
+### Paso 14b: aprobar con --approve 4d7ffe2c0e99
+{
+  "status": "applied",
+  "plan": {
+    "action": "delete_comments_of_post",
+    "args": {
+      "post_id": 5
+    },
+    "details": {
+      "affected_comment_ids": [
+        16
+      ]
+    },
+    "plan_hash": "4d7ffe2c0e99"
+  },
+  "result": {
+    "deleted": 1
+  }
+}
+
+### Verificación: comentarios del artículo 5 ->
+
+0
+
+### Restaurar (BD nueva + seed_blog)
+Listo: 4 autores, 15 artículos, 23 comentarios.
+
+### Paso 14c: nuevo plan
+{
+  "status": "approval_required",
+  "plan": {
+    "action": "delete_comments_of_post",
+    "args": {
+      "post_id": 5
+    },
+    "details": {
+      "affected_comment_ids": [
+        16
+      ]
+    },
+    "plan_hash": "4d7ffe2c0e99"
+  }
+}
+
+No se aplicó nada. Si TÚ apruebas este plan, repite el comando con --approve 4d7ffe2c0e99
+
+### Se agrega un comentario al artículo 5 ENTRE el plan y la aprobación
+
+nuevo comentario id 24 ; total artículo 5: 2
+
+### Aprobación con el hash VIEJO 4d7ffe2c0e99
+{
+  "status": "approval_required",
+  "plan": {
+    "action": "delete_comments_of_post",
+    "args": {
+      "post_id": 5
+    },
+    "details": {
+      "affected_comment_ids": [
+        16,
+        24
+      ]
+    },
+    "plan_hash": "72e9a213dac7"
+  }
+}
+
+No se aplicó nada. Si TÚ apruebas este plan, repite el comando con --approve 72e9a213dac7
+
+### Verificación: comentarios del artículo 5 ->
+
+2
+
+### Restaurar
+Listo: 4 autores, 15 artículos, 23 comentarios.
